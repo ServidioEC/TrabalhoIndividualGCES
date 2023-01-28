@@ -1,16 +1,16 @@
 version: "3.9"
 
 services:
-  src:
-    container_name: app-py
-    image: src:1.0
+  app:
+    container_name: app
+    image: app:1.0
     build:
       context: .
       dockerfile: Dockerfile
     command: python src/main.py
     depends_on:
       - db
-      
+
   db:
     container_name: local-db
     image: mongo
