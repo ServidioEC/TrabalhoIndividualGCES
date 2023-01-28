@@ -12,16 +12,23 @@ services:
       - db
 
   db:
-    container_name: local-db
-    image: mongo
-    restart: always
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: lappis
-      MONGO_INITDB_ROOT_PASSWORD: lappis
-    volumes:
-      - mongodb:/data/db
+    container_name: db
+    image: postgres:latest
+    restart: unless-stopped
     ports:
-      - 8081:8081
+      - 5432:5432
+    volumes:
+      - db_postgres_data:/var/lib/postgresql/data
+    env_file:
+      - ./.env
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    name: app-network
+    driver: bridge
 
 volumes:
-  mongodb:
+  db_postgres_data:
+  pip_cache:
