@@ -3,7 +3,7 @@ version: "3.9"
 services:
   app:
     container_name: app
-    image: app:1.0
+    image: app
     build:
       context: .
       dockerfile: Dockerfile
